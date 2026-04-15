@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9d05ed19d289b54ab6d98ec7f527fde, type: 3}
+  m_Name: RelicData
+  m_EditorClassIdentifier: Assembly-CSharp::RelicData
+  relicName: Test Relic
+  description: Test....
+  icon: {fileID: -826137360677743432, guid: 39402d6b82758164797b3211e1622011, type: 3}
+  trigger: {fileID: 11400000, guid: 588e3a40470a123449bb06995d36115e, type: 2}
+  effect: {fileID: 11400000, guid: bb4bb20220005a04086dd8cdfc31128b, type: 2}

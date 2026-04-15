@@ -11,6 +11,7 @@ public class WeaponFactory : MonoBehaviour
     private Weapon dummyWeapon;
 
     public Transform launchPoint;
+    [SerializeField] private float launchAngleOffset = -90f;
 
     public bool CanThrow { get; private set; } = true;
 
@@ -31,7 +32,14 @@ public class WeaponFactory : MonoBehaviour
             return null;
         }
 
-        dummyWeapon = Instantiate(weaponPrefab, launchPoint.position, launchPoint.rotation).GetComponent<Weapon>();
+        if (launchPoint == null || weaponPrefab == null)
+        {
+            Debug.LogWarning("launchPoint 또는 weaponPrefab이 설정되지 않았습니다.");
+            return null;
+        }
+
+        Quaternion spawnRotation = launchPoint.rotation * Quaternion.Euler(0f, 0f, launchAngleOffset);
+        dummyWeapon = Instantiate(weaponPrefab, launchPoint.position, spawnRotation).GetComponent<Weapon>();
         Rigidbody2D dummyRb = dummyWeapon.GetComponent<Rigidbody2D>();
         
         ThrowContext context = new ThrowContext

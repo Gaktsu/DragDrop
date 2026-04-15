@@ -5,18 +5,19 @@ using UnityEngine;
 // 
 public class BehaviorActPanel : MonoBehaviour 
 {
-    public ThrowBook throwBook;
-    public SkillBook skillBook;
     public Transform throwPanel;
     public Transform skillPanel;
+    public Transform relicPanel;
 
     public GameObject thorwUIPrefab;
     public GameObject skillUIPrefab;
+    public GameObject relicUIPrefab;
 
     void Start()
     {
         PlayerEventBus.Instance.OnAddThrow += ThrowUIInstantiate;
         PlayerEventBus.Instance.OnAddSkill += SkillUIInstantiate;
+        PlayerEventBus.Instance.OnAddRelic += RelicUIInstantiate;
     }
 
     public void ThrowUIInstantiate(Throw _throw)
@@ -42,5 +43,13 @@ public class BehaviorActPanel : MonoBehaviour
             PlayerEventBus.Instance.OnSkillSelectRequested?.Invoke(selectedSkill);
         };
         skillSlotUI.transform.SetParent(skillPanel);
+    }
+
+    public void RelicUIInstantiate(Relic relic)
+    {
+        GameObject relicSlotUI = Instantiate(relicUIPrefab);
+        RelicUI relicUI = relicSlotUI.GetComponent<RelicUI>();
+        relicUI.Setup(relic);
+        relicSlotUI.transform.SetParent(relicPanel);
     }
 }

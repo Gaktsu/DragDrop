@@ -18,6 +18,9 @@ public class WeaponHit : MonoBehaviour
             int damageValueToInt = Mathf.RoundToInt(damageValue);
             ApplyDebuff(target, Player.Instance.status.GetDebuff(target));
             target.Damaged(damageValueToInt);
+
+            RelicContext context = new RelicContext(player, target, RelicActionType.Attack, damageValue, StatusEffectType.None);
+            ActionLibrary.Instance.relicBook.NotifyRelics(context);
         }
     }
 

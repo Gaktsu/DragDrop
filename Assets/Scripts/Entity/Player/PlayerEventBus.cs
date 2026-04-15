@@ -15,6 +15,7 @@ public class PlayerEventBus : MonoBehaviour
 
     public Action<Throw> OnAddThrow;
     public Action<Skill> OnAddSkill;
+    public Action<Relic> OnAddRelic;
 
     public Action<Skill> OnSkillSelectRequested;
     public Action<Throw> OnThrowSelectRequested;

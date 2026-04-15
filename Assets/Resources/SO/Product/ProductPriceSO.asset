@@ -19,3 +19,6 @@ MonoBehaviour:
   - type: 1
     minCost: 300
     maxCost: 350
+  - type: 2
+    minCost: 300
+    maxCost: 350

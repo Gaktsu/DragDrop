@@ -8,6 +8,7 @@ public class ActionLibrary : MonoBehaviour
     public static ActionLibrary Instance;
     public SkillBook skillBook = new SkillBook();
     public ThrowBook throwBook = new ThrowBook();
+    public RelicBook relicBook = new RelicBook();
 
     public void Start()
     {
@@ -23,5 +24,10 @@ public class ActionLibrary : MonoBehaviour
     public void AddThrow(Throw _throw)
     {
         throwBook.AddThrow(_throw.data);
+    }
+
+    public void AddRelic(Relic relic)
+    {
+        relicBook.AddRelic(relic.data);
     }
 }

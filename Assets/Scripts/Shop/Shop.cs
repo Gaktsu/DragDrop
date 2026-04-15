@@ -26,25 +26,31 @@ public class Shop : MonoBehaviour
         CreateProducts();
     }
 
+    public void CloseShop()
+    {
+        shopPanel.SetActive(false);
+    }
+
     private void CreateProducts()
     {
         foreach (var product in productSlots)
         {
             if (productPrice == null) continue;
 
-            IProductStrategy strategy = CreateStrategy(product.productType);
+            IProduct newProduct = CreateProduct(product.productType);
 
-            if (strategy != null)
-                product.Bind(strategy, this);
+            if (newProduct != null)
+                product.Bind(newProduct, this);
         }
     }
 
-    private IProductStrategy CreateStrategy(ProductType type)
+    private IProduct CreateProduct(ProductType type)
     {
         return type switch
         {
-            ProductType.Skill => new SkillProductStrategy(DatabaseHub.Instance.skillDB.GetRandomSkill()),
-            ProductType.Throw => new ThrowProductStrategy(DatabaseHub.Instance.throwDB.GetRandomSkill()),
+            ProductType.Skill => new SkillProduct(DatabaseHub.Instance.skillDB.GetRandomSkill()),
+            ProductType.Throw => new ThrowProduct(DatabaseHub.Instance.throwDB.GetRandomThrow()),
+            ProductType.Relic => new RelicProduct(DatabaseHub.Instance.relicDB.GetRandomRelic()),
             _ => null
         };
     }

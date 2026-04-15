@@ -6,6 +6,7 @@ public class DatabaseHub : MonoBehaviour
 
     public SkillDatabase skillDB;
     public ThrowDatabase throwDB;
+    public RelicDatabase relicDB;
 
     void Awake()
     {

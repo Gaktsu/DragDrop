@@ -61,22 +61,6 @@ public class StatusController
         return ActiveEffects.Where(e => e.Type == type).Sum(e => e.Value);
     }
 
-    // 4. 보호막 전용 로직 (특정 상황에서만 호출)  
-    public float HandleShield(float damage)
-    {
-        var shields = ActiveEffects.Where(e => e.Type == StatusEffectType.Shield).ToList();
-        foreach (var s in shields)
-        {
-            if (damage <= 0) break;
-            float absorb = Mathf.Min(s.Value, damage);
-            s.Value -= absorb;
-            damage -= absorb;
-        }
-        ActiveEffects.RemoveAll(e => e.Type == StatusEffectType.Shield && e.Value <= 0);
-        return damage;
-    }
-
-    // 
     public List<StatusEffect> GetDebuff(Entity target)
     {
         // 1. 내 몸에 있는 '전이용' 효과들만 추출

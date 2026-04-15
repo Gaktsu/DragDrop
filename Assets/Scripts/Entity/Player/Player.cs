@@ -33,6 +33,7 @@ public class Player : Entity
     public void ExecuteSkill()
     {
         if (selectedSkill == null) return;
+        
         selectedSkill.data.SkillAction.Execute(this, selectedSkill);
     }
 

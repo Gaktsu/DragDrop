@@ -6,7 +6,7 @@ public class ThrowDatabase : ScriptableObject
 {
     public List<ThrowData> throws = new List<ThrowData>();
 
-    public ThrowData GetRandomSkill()
+    public ThrowData GetRandomThrow()
     {
         if (throws == null || throws.Count == 0) return null;
 

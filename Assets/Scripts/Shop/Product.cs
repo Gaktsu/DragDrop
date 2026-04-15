@@ -16,17 +16,17 @@ public class Product : MonoBehaviour, IPointerClickHandler
     public int cost;
     public bool purchased;
 
-    private IProductStrategy strategy;
+    private IProduct product;
     private Shop shop;
 
-    public void Bind(IProductStrategy strategy, Shop shop)
+    public void Bind(IProduct product, Shop shop)
     {
-        this.strategy = strategy;
+        this.product = product;
         this.shop = shop;
-        nameText.text = strategy.Name;
-        descriptionText.text = strategy.Description;
-        iconImage.sprite = strategy.Icon;
-        cost = shop.productPrice != null ? shop.productPrice.GetRandomCost(strategy.ProductType) : 0;
+        nameText.text = product.Name;
+        descriptionText.text = product.Description;
+        iconImage.sprite = product.Icon;
+        cost = shop.productPrice != null ? shop.productPrice.GetRandomCost(product.ProductType) : 0;
         costText.text = cost.ToString();
     }
 
@@ -49,7 +49,7 @@ public class Product : MonoBehaviour, IPointerClickHandler
         {
             money -= cost;
             purchased = true;
-            strategy.OnPurchase(Player.Instance);
+            product.OnPurchase(Player.Instance);
         }
     }
 }

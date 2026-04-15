@@ -12,6 +12,7 @@ public class StatController
     public float BaseAttackPower { get; private set; }
     public float BaseDefensePower { get; private set; }
     public float CriticalChance { get; private set; }
+    public int ShieldAmount { get; private set; }
 
     public void Init(Entity owner)
     {
@@ -36,6 +37,36 @@ public class StatController
     public void SetBaseDefensePower(float value)
     {
         BaseDefensePower = Mathf.Max(0f, value);
+    }
+
+    public void AddShield(int amount)
+    {
+        ShieldAmount += amount;
+    }
+
+    public int AbsorbShield(int damage)
+    {
+        if (damage <= 0) return 0;
+
+        int absorb = Mathf.Min(ShieldAmount, damage);
+        ShieldAmount = Mathf.Clamp(ShieldAmount - absorb, 0, Int16.MaxValue);
+        damage -= absorb;
+
+        return damage;
+    }
+
+    public int GetCurrentShield()
+    {
+        return ShieldAmount;
+    }
+
+    public int GetCurrentHP()
+    {
+        return Hp;
+    }
+    public int GetMaxHP()
+    {
+        return MaxHp;
     }
 
     public float GetAttackPower()

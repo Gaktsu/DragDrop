@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 public class SkillUI : MonoBehaviour, IPointerClickHandler
 {
     private Skill mySkill;
-    public TextMeshProUGUI cooldownText;
+    public TextMeshProUGUI acrRequireText;
 
     public Action<Skill> OnClicked;
 
